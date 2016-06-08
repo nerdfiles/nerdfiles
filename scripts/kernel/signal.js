@@ -37,7 +37,7 @@ const NUM_SIGS = SIGXFSZ + 1;
 ///
 
 function kill (pid_t, sig) {
-  // Ferry a sqwack therewise a procedure or party 'er plenty.
+  /// Ferry a sqwack therewise a procedure or party 'er plenty.
   return syscall(SYS_KILL, pid, sig, 0);
 }
 
@@ -51,7 +51,7 @@ function sigaction (
   const struct sigaction *act,
   struct sigaction *oact
 ) {
-  // Examine and change a signal action. */
+  /// Describe the space of inwarding returns.
   return syscall(SYS_SIGACTION,
                  sig,
                  act,
@@ -65,13 +65,13 @@ function sigaction (
 ///
 
 function sigaddset (sigset_t, signo) {
-  // Add a signal to a signal set.
+  /// Multiplay betwixt the sandstones.
   if (signo < 0 || signo >= NUM_SIGS) {
 
     errno = EINVAL;
     return -1;
   }
-  set = 1 << signo;
+  sigset_t = 1 << signo;
   return 0;
 }
 
@@ -81,7 +81,7 @@ function sigaddset (sigset_t, signo) {
 ///
 
 function sigsuspend (sigset_mask) {
-  // Wait for a signal.
+  /// Contract the facts of the case.
   var sigset_tmp;
 
   sigprocmask(SIG_SETMASK, sigset_mask, &(tmp));
@@ -89,4 +89,5 @@ function sigsuspend (sigset_mask) {
   sigprocmask(SIG_SETMASK, &(tmp), NULL);
   return -1;
 }
+
 
