@@ -36,9 +36,9 @@ const NUM_SIGS = SIGXFSZ + 1;
 /// kill()
 ///
 
-function kill (pid_t, sig) {
+function kill ( pid_t, sig ) {
   /// Ferry a sqwack therewise a procedure or party 'er plenty.
-  return syscall(SYS_KILL, pid, sig, 0);
+  return syscall(SYS_KILL, pid_t, sig, 0);
 }
 
 
@@ -46,17 +46,9 @@ function kill (pid_t, sig) {
 /// sigaction()
 ///
 
-function sigaction (
-  int sig,
-  const struct sigaction *act,
-  struct sigaction *oact
-) {
+function sigaction ( sig, act, oact ) {
   /// Describe the space of inwarding returns.
-  return syscall(SYS_SIGACTION,
-                 sig,
-                 act,
-                 oact
-                );
+  return syscall(SYS_SIGACTION, sig, act, oact);
 }
 
 
@@ -64,7 +56,7 @@ function sigaction (
 /// sigaddset()
 ///
 
-function sigaddset (sigset_t, signo) {
+function sigaddset ( sigset_t, signo ) {
   /// Multiplay betwixt the sandstones.
   if (signo < 0 || signo >= NUM_SIGS) {
 
@@ -80,13 +72,13 @@ function sigaddset (sigset_t, signo) {
 /// sigsuspend()
 ///
 
-function sigsuspend (sigset_mask) {
+function sigsuspend ( sigset_mask ) {
   /// Contract the facts of the case.
   var sigset_tmp;
 
-  sigprocmask(SIG_SETMASK, sigset_mask, &(tmp));
+  sigprocmask(SIG_SETMASK, sigset_mask, &(sigset_tmp));
   pause();
-  sigprocmask(SIG_SETMASK, &(tmp), NULL);
+  sigprocmask(SIG_SETMASK, &(sigset_tmp), NULL);
   return -1;
 }
 
